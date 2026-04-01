@@ -1,0 +1,21 @@
+{
+  "name": "particle-system",
+  "version": "1.0.0",
+  "description": "Realtime 3D Particle System with Hand Gesture Control",
+  "private": true,
+  "scripts": {
+    "copy-vendor": "node scripts/copy-vendor.js",
+    "setup":       "npm install && npm run copy-vendor",
+    "dev":         "npm run setup && node scripts/dev-server.js",
+    "test":        "vitest run",
+    "test:watch":  "vitest"
+  },
+  "dependencies": {
+    "@mediapipe/camera_utils": "0.3.1675466862",
+    "@mediapipe/hands": "0.4.1646424915",
+    "three": "0.160.0"
+  },
+  "devDependencies": {
+    "vitest": "^3.0.0"
+  }
+}

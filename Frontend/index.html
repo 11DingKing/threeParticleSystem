@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>3D 粒子系统 · 手势交互</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- Three.js canvas -->
+  <canvas id="canvas3d"></canvas>
+
+  <!-- App title -->
+  <div id="appTitle">
+    ✨ 3D 粒子系统
+    <small>拖动旋转 · 滚轮缩放 · 手势控制</small>
+  </div>
+
+  <!-- Camera preview (hidden until camera is started) -->
+  <div id="camPreview">
+    <video id="videoEl" autoplay playsinline muted></video>
+    <canvas id="handCanvas"></canvas>
+    <div class="cam-lbl">手势检测中</div>
+  </div>
+
+  <!-- Control panel -->
+  <div id="panel">
+    <div class="panel-head">
+      <div class="panel-icon">✦</div>
+      粒子控制台
+    </div>
+
+    <div class="hr"></div>
+
+    <!-- Shape selector -->
+    <div>
+      <div class="lbl">形状模型</div>
+      <div class="shape-grid">
+        <button class="shape-btn active" data-shape="heart">❤️<br>爱心</button>
+        <button class="shape-btn"        data-shape="flower">🌸<br>花朵</button>
+        <button class="shape-btn"        data-shape="saturn">🪐<br>土星</button>
+        <button class="shape-btn"        data-shape="fireworks">🎆<br>烟花</button>
+      </div>
+    </div>
+
+    <!-- Colour picker -->
+    <div>
+      <div class="lbl">粒子颜色</div>
+      <div class="color-wrap">
+        <div class="color-row">
+          <input type="color" id="colorPicker" value="#ff4488">
+          <span class="color-hint">点击选取自定义颜色</span>
+        </div>
+        <div class="swatches">
+          <div class="swatch active" style="background:#ff4488" data-color="#ff4488"></div>
+          <div class="swatch"        style="background:#ff7722" data-color="#ff7722"></div>
+          <div class="swatch"        style="background:#ffcc22" data-color="#ffcc22"></div>
+          <div class="swatch"        style="background:#44ff99" data-color="#44ff99"></div>
+          <div class="swatch"        style="background:#4499ff" data-color="#4499ff"></div>
+          <div class="swatch"        style="background:#bb44ff" data-color="#bb44ff"></div>
+          <div class="swatch"        style="background:#00eeff" data-color="#00eeff"></div>
+          <div class="swatch"        style="background:#ffffff" data-color="#ffffff"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scale / gesture status -->
+    <div>
+      <div class="lbl">缩放控制</div>
+      <div class="scale-section">
+        <div class="scale-row">
+          <input type="range" id="scaleSlider" min="25" max="300" value="100">
+          <span class="scale-val" id="scaleVal">1.0×</span>
+        </div>
+        <div class="stat-row">
+          <span>手部检测</span>
+          <span class="badge" id="handBadge">未启动</span>
+        </div>
+        <div class="stat-row">
+          <span>手势张合</span>
+          <div class="progress-track">
+            <div class="progress-fill" id="opennessFill"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hr"></div>
+
+    <!-- Control buttons -->
+    <div class="btn-row">
+      <button class="act-btn"        id="camBtn">📷 摄像头</button>
+      <button class="act-btn on-rot" id="rotBtn">↻ 自转</button>
+    </div>
+  </div>
+
+  <!-- Fullscreen toggle -->
+  <button id="fsBtn" title="全屏切换">⛶</button>
+
+  <!-- Toast notification container -->
+  <div id="toastContainer"></div>
+
+  <!--
+    MediaPipe (UMD globals — must load before ES modules)
+    Served from local vendor/ directory built into the Docker image.
+  -->
+  <script src="/vendor/mediapipe/hands/hands.js"></script>
+  <script src="/vendor/mediapipe/camera_utils/camera_utils.js"></script>
+
+  <!-- App entry (ES Module) -->
+  <script type="module" src="js/main.js"></script>
+
+</body>
+</html>
