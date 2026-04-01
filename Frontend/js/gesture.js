@@ -151,6 +151,7 @@ export function stopCam() {
   mpCam = null; handsInst = null;
   state.handActive   = false;
   state.handDetected = false;
+  state.scaleTarget  = 1.0;
   document.getElementById('camPreview').style.display = 'none';
   _onDetected?.(false, 0);
   toast('摄像头已关闭，恢复手动控制模式', 'info', 2500);
